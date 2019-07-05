@@ -1,4 +1,4 @@
-# Copyright (C) 2012 - TODAY, Open Source Integrators
+# Copyright (C) 2012 Open Source Integrators
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 {
@@ -8,8 +8,11 @@
     'author': 'Open Source Integrators, Odoo Community Association (OCA)',
     'summary': 'Report of Un-Invoiced Goods Received and Backorders',
     'category': 'Purchase',
-    'website': 'http://github.com/OCA/purchase-reporting',
-    'depends': ['purchase'],
+    'website': 'https://github.com/OCA/purchase-reporting',
+    'depends': [
+        'account',
+        'purchase_stock',
+    ],
     'data': [
         'views/po_backorder_view.xml',
         'views/purchase_view.xml',
