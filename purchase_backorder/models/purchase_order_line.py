@@ -83,8 +83,12 @@ class PurchaseOrderLine(models.Model):
                 timezone = (
                     self._context.get("tz") or self.env.user.partner_id.tz or "UTC"
                 )
-                date_deadline = fields.Datetime.context_timestamp(
+                last_bill_date_tz = fields.Datetime.context_timestamp(
                     self.with_context(tz=timezone),
                     fields.Datetime.from_string(last_bill_date),
+                ).replace(tzinfo=None)
+                line.last_bill_date = last_bill_date_tz.replace(
+                    day=last_bill_date.day,
+                    month=last_bill_date.month,
+                    year=last_bill_date.year,
                 )
-                line.last_bill_date = date_deadline.replace(tzinfo=None)
